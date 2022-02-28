@@ -1,0 +1,10 @@
+version: '3'
+services:
+  texnology:
+    build: .
+    restart: unless-stopped
+    ports:
+      - "30025:80"
+    volumes:
+      - ./code/:/var/www/html/:ro
+      - ./code/FLAG:/FLAG:ro
