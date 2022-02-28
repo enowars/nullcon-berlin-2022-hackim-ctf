@@ -1,0 +1,9 @@
+version: '3'
+services:
+  web:
+    build: .
+    volumes:
+      - ./code/:/usr/src/app:ro
+      - ./code/flag.txt:/usr/src/app/flag.txt:ro
+    ports:
+      - "8000:8000"
