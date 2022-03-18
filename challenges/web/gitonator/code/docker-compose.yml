@@ -1,6 +1,6 @@
 version: '3'
 services:
-  log4u:
+  gitonator:
     build: .
     restart: unless-stopped
     ports:
