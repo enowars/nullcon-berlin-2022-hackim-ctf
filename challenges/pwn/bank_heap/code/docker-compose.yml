@@ -1,0 +1,6 @@
+version: "3"
+services:
+  bank:
+    build: .
+    ports:
+      - 10006:1024
