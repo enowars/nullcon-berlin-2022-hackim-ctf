@@ -1,0 +1,6 @@
+version: "3"
+services:
+  chal:
+    build: .
+    ports:
+      - 10007:1024
