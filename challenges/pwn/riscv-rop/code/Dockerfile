@@ -1,16 +1,27 @@
-FROM ubuntu:latest
+FROM ubuntu:20.04
 
-RUN apt-get update
+ENV DEBIAN_FRONTEND noninteractive
 
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y xinetd hashcash qemu-user
+RUN apt-get -y update --fix-missing && apt-get -y upgrade
+RUN apt-get -y install xinetd hashcash qemu-user
+RUN groupadd -r user && useradd -r -g user user
 
-RUN addgroup user && adduser --disabled-password --gecos "" --ingroup user user
-
-COPY app.xinetd /etc/xinetd.d/app
+ADD rop.xinetd /etc/xinetd.d/rop
+ADD init.sh /etc/init.sh
+RUN chmod 700 /etc/init.sh
+RUN chmod 1733 /tmp /var/tmp /dev/shm
 
 WORKDIR /home/user/
-RUN chmod 555 /home/user
-COPY ./code/chal ./code/run.sh ./
+ADD ./code/chal chal
+ADD ./code/flag.txt flag.txt
+ADD ./code/run.sh run.sh
 
-CMD service xinetd start && tail -F /var/log/xinetdlog
+RUN chmod 440 flag.txt
+RUN chmod 550 chal
+RUN chmod 550 run.sh
 
+RUN mv flag.txt flag-$(md5sum flag.txt | awk '{print $1}').txt
+
+RUN chown -R root:user /home/user
+
+CMD service xinetd start
