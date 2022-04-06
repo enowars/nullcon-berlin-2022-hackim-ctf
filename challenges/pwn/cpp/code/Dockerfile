@@ -3,25 +3,23 @@ FROM ubuntu:20.04
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get -y update --fix-missing && apt-get -y upgrade
-RUN apt-get -y install xinetd hashcash qemu-user
+RUN apt-get -y install xinetd
 RUN groupadd -r user && useradd -r -g user user
 
-ADD rop.xinetd /etc/xinetd.d/rop
+ADD cpp.xinetd /etc/xinetd.d/cpp
 ADD init.sh /etc/init.sh
 RUN chmod 700 /etc/init.sh
 RUN chmod 1733 /tmp /var/tmp /dev/shm
 
 WORKDIR /home/user/
-ADD ./code/chal chal
+ADD ./code/my_list my_list
 ADD ./code/flag.txt flag.txt
-ADD ./code/run.sh run.sh
 
 RUN chmod 440 flag.txt
-RUN chmod 550 chal
-RUN chmod 550 run.sh
+RUN chmod 550 my_list
 
 RUN mv flag.txt flag-$(md5sum flag.txt | awk '{print $1}').txt
 
 RUN chown -R root:user /home/user
 
-CMD service xinetd start
+CMD service xinetd start && /bin/sleep infinity
