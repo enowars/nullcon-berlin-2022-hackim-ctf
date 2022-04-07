@@ -1,0 +1,8 @@
+version: "3.9"
+services:
+  chall:
+    volumes:
+      - .:/code
+    build: .
+    ports:
+      - "10110:1337"
