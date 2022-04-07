@@ -3,7 +3,7 @@ services:
   riscv:
     build: .
     ports:
-      - "10007:1024"
+      - "10204:1024"
     working_dir: /home/user
     container_name: riscv
     entrypoint: /etc/init.sh

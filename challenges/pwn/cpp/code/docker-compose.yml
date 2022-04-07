@@ -3,7 +3,7 @@ services:
   cpp:
     build: .
     ports:
-      - "10007:1024"
+      - "10202:1024"
     working_dir: /home/user
     container_name: cpp
     entrypoint: /etc/init.sh

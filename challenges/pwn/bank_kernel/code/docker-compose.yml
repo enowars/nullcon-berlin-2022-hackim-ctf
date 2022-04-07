@@ -3,7 +3,7 @@ services:
   bank_kernel:
     build: .
     ports:
-      - "10008:1024"
+      - "10201:1024"
     working_dir: /home/user
     container_name: bank_kernel
     entrypoint: /etc/init.sh
