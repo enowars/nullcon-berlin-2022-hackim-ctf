@@ -1,0 +1,9 @@
+version: '3'
+services:
+  gitonator:
+    build: .
+    restart: unless-stopped
+    ports:
+      - "8282:31337"
+    volumes:
+      - ./FLAG:/FLAG:ro

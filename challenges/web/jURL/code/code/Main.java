@@ -9,6 +9,7 @@ public class Main {
 		  	BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
 		  	System.out.println("My URL is <FLAG>.thisurldoesnotexist.com. Can you guess it?");
+		  	System.out.println("HINT: Brute-Force is NOT the solution. Don't try it!");
 		  	String YOUR_URL = br.readLine();
 
 		  	if(MY_URL.equals(new URL("http://" + FLAG + "." + YOUR_URL + "/"))) {
@@ -21,6 +22,7 @@ public class Main {
 		  catch(Exception e) {
 		  	System.out.println("Ooops");
 		  }
+	  	System.exit(0);
 	 }
 
 }

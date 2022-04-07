@@ -1,0 +1,14 @@
+service c++
+{
+	disable = no
+	socket_type = stream
+	protocol = tcp
+	wait = no
+	user = user
+	type = UNLISTED	
+	bind = 0.0.0.0
+	port = 1024
+	server = /home/user/my_list
+	rlimit_as = 1024M
+}
+

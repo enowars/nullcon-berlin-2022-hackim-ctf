@@ -1,0 +1,10 @@
+version: "3"
+services:
+  riscv:
+    build: .
+    ports:
+      - "10204:1024"
+    working_dir: /home/user
+    container_name: riscv
+    entrypoint: /etc/init.sh
+    restart: always

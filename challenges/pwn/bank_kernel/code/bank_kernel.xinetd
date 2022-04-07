@@ -1,0 +1,15 @@
+service bank_kernel
+{
+    disable        = no
+    socket_type    = stream
+    protocol       = tcp
+    wait           = no
+    user           = user
+    type           = UNLISTED
+    port           = 1024
+    bind           = 0.0.0.0
+    server         = /home/user/run.sh
+    per_source     = 2
+    rlimit_as      = 1024M
+}
+

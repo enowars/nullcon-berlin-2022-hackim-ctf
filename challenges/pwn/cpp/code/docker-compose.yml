@@ -1,0 +1,11 @@
+version: "3"
+services:
+  cpp:
+    build: .
+    ports:
+      - "10202:1024"
+    working_dir: /home/user
+    container_name: cpp
+    entrypoint: /etc/init.sh
+    restart: always
+

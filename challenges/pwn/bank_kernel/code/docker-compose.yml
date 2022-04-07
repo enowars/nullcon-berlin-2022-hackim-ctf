@@ -1,0 +1,11 @@
+version: "3"
+services:
+  bank_kernel:
+    build: .
+    ports:
+      - "10201:1024"
+    working_dir: /home/user
+    container_name: bank_kernel
+    entrypoint: /etc/init.sh
+    restart: always
+
