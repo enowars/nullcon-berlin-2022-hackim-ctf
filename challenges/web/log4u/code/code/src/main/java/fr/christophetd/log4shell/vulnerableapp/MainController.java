@@ -16,7 +16,7 @@ public class MainController {
     @GetMapping("/")
     public String index(@RequestHeader(value = "X-Api-Version", defaultValue="default") String apiVersion) {
         logger.info("Received a request for API version " + apiVersion);
-        return "Value of X-Api-Version: " + apiVersion + "\nYou'll find the flag here: /FLAG";
+        return "Welcome to @gehaxelt's log4u API - It's the most secure logging platform on the internet.\nPlease provide a value for X-Api-Version. The current value is: " + apiVersion + "\nYou'll find the flag here: /FLAG ;-)";
     }
 
 }
