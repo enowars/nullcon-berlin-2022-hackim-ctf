@@ -22,6 +22,7 @@ class FileServerHandler(http.server.SimpleHTTPRequestHandler):
 		print(path)
 		fpath = os.path.join(BASEPATH, "files", path)
 
+		s.write(f"Welcome to @gehaxelt's file server.\n\n")
 		if len(fpath) <= len(BASEPATH):
 			self.send_header('Content-Type', 'text/plain')
 			s.write(f"Hm, this path is not within {BASEPATH}")
