@@ -8,8 +8,7 @@ from functools import partial
 from socketserver import ForkingTCPServer, BaseRequestHandler
 
 PORT = 5656
-REGEX = r"[^ &\--=@-P'_-m]*"
-
+REGEX = r"p*[^ &\--=@-P'_-m]*,*"
 
 class RequestHandler(BaseRequestHandler):
     def handle(self):
