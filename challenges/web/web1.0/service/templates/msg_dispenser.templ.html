@@ -1,0 +1,69 @@
+TEMPLATE(
+<body>
+    <h1>Your friendly msg storage.</h1>
+    <div id="token">
+        <form id="msgreserver" method="get" action="web1.0">
+        <p>Store a msg now!</p>
+        <div id="msgreg">
+        <label for="color">Flag/color your message:</label>
+        <input type="hidden" id="route" name="route" value="reserve" />
+        <input type="hidden" id="csrf" name="csrf" value="{{csrf%s}}" />
+        <select name="color" id="color">
+            <option value="🚩">🚩</option>
+            <option value="🏁">🏁</option>
+            <option value="🏳️">🏳️</option>
+            <option value="🏳️‍🌈">🏳️‍🌈</option>
+            <option value="🏳️‍⚧️">🏳️‍⚧️</option>
+            <option value="🦄">️🦄</option>
+            <option value="🏴‍☠️">🏴‍☠️</option>
+        </select>
+        <button id="reserve">Store a messag in the best service on the modern web!</button>
+        </div>
+        </form>
+    </div>
+
+    <div id="ownmsgs">
+        <p>Your msgs:</p>
+        <div class="msgdiv">
+        <ul>
+        {{own_msgs%s}}
+        </ul>
+        </div>
+    </div>
+
+    <div id="allmsgs">
+        <p>All msgs:</p>
+        <div class=msgdiv>
+        <ul>
+        {{msgs%s}}
+        </ul>
+        </div>
+    </div>
+
+    <div id=msgid>
+    <p>Also, the questionnaire for our admin team is </p>
+    <div>
+        <code>{{admin_challenge_enc%s}}</code>
+    </div>
+    <p> today.</p>
+    <code id="chosencolor">{{color%s}}</code>
+    </div>
+    <a href=/>HOME</a>
+
+<script nonce={{NONCE%s}}>
+    if ("{{msg_token%s}}") {
+        token.innerHTML = `<p>Your msg with the ID {{msg_token%s}} and tag ${decodeURI(chosencolor.innerHTML)} got reserved.</p>
+        <a href="web1.0/?route=dispense">STORE ADDITIONAL MSGS</a>
+        `
+    }
+    chosencolor.innerHTML = ""
+
+    if ({{(!STR(admin_challenge_enc)[0])%d}}) {
+        msgid.innerHTML = ""
+    }
+    if ({{(!STR(own_msgs)[0])%d}}) {
+        ownmsgs.innerHTML = ""
+    }
+</script>
+</body>
+)

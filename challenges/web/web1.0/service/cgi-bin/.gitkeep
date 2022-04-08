@@ -1,0 +1,16 @@
+#!/bin/bash
+
+echo "Content-type: text/html"
+echo ""
+
+echo '<html>'
+echo '<head>'
+echo '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">'
+echo '<title>Bye World</title>'
+echo '</head>'
+echo '<body>'
+echo 'Bye World'
+read -r line
+echo "$line"
+echo '</body>'
+echo '</html>'
