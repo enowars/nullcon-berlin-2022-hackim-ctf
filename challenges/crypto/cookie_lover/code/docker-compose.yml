@@ -4,4 +4,4 @@ services:
     restart: unless-stopped
     build: .
     ports: 
-      - "10301:10301" 
+      - "10301:1337" 
