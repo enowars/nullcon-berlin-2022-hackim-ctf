@@ -1,0 +1,7 @@
+version: "3.3"
+services:
+  sign:
+    restart: unless-stopped
+    build: .
+    ports: 
+      - "8184:1337" 
