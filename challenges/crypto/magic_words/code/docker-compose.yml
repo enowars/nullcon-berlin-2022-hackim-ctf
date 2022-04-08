@@ -1,7 +1,7 @@
 version: "3.3"
 services:
-  sign:
+  sign2:
     restart: unless-stopped
     build: .
     ports: 
-      - "8184:1337" 
+      - "10302:1337" 

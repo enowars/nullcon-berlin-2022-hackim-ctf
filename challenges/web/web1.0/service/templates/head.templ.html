@@ -1,0 +1,137 @@
+TEMPLATE(
+<!DOCTYPE html>
+<html lang="en"> 
+<head>
+    <title>&#127757; web1.0</title>
+    <meta charset="utf-8"/>
+
+    <style nonce="{{NONCE%s}}">
+
+    @import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+
+    h1 {
+        font-family: 'Lobster', cursive;
+    }
+
+    a {
+        color: orangered;
+    }
+
+    .msgdiv {
+        overflow-y: scroll;
+        background: lightblue;
+        max-height: 150px;
+        border: orangered;
+        border-style: dashed;
+        border-width: 1px;
+    }
+
+    .nobutton {
+        background: none;
+        border: none;
+        padding: .5em 1em;
+        font: inherit;
+    }
+
+    /*
+     * -- BASE STYLES --
+     * Most of these are inherited from Base, but I want to change a few.
+     */
+    body {
+        line-height: 1.7em;
+        color: black;
+        font-size: 16px;
+        font-family: monospace;
+        /* Does nothing right now */
+        /*background-image: url("../img/umbrella_material.png");*/
+        background-position: right bottom; /*Positioning*/
+        background-repeat: no-repeat;
+
+        background: lightblue;
+    }
+
+    a:hover {
+        background-color: transparent;
+        color: white;
+    }
+
+    .pure-img-responsive {
+        max-width: 100%;
+        height: auto;
+    }
+
+    /*
+     * -- LAYOUT STYLES --
+     * These are some useful classes which I will need
+     */
+    .l-box {
+        padding: 1em;
+    }
+
+    .l-box-lrg {
+        padding: 2em;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    .is-center {
+        text-align: center;
+    }
+
+
+    /*
+     * -- PURE FORM STYLES --
+     * Style the form inputs and labels
+     */
+    .pure-form label {
+        margin: 1em 0 0;
+        font-weight: bold;
+        font-size: 100%;
+    }
+
+    .pure-form input[type],
+    .pure-form select {
+        box-shadow: none;
+        font-size: 100%;
+        width: 100%;
+        margin-bottom: 1em;
+    }
+
+    .pure-form input:not([type]):focus, .pure-form input[type="password"]:focus, .pure-form input[type="email"]:focus, .pure-form input[type="url"]:focus, .pure-form input[type="date"]:focus, .pure-form input[type="month"]:focus, .pure-form input[type="time"]:focus, .pure-form input[type="datetime"]:focus, .pure-form input[type="datetime-local"]:focus, .pure-form input[type="week"]:focus, .pure-form input[type="tel"]:focus, .pure-form input[type="color"]:focus, .pure-form input[type="number"]:focus, .pure-form input[type="search"]:focus, .pure-form input[type="text"]:focus, .pure-form select:focus, .pure-form textarea:focus {
+        outline: 0;
+        border-color: black;
+    }
+
+    .pure-form input:focus:valid, .pure-form select:focus:valid, .pure-form textarea:focus:valid {
+        color: green;
+        border-color: green !important;
+    }
+
+    .pure-form input:focus:invalid, .pure-form select:focus:invalid, .pure-form textarea:focus:invalid {
+        color: red;
+        border-color: red !important;
+    }
+
+
+    .button-small {
+        font-size: 85%;
+    }
+
+    /* We want to give the content area some more padding */
+    .content {
+        padding: 1em 1em 3em;
+    }
+
+    code {
+        overflow-x: hidden;
+        max-width: 95%;
+        display: block;
+        white-space: pre-line;
+        color: white;
+    }
+
+    </style>
+
+    {{palm%s}}
+
+</head>
+)

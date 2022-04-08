@@ -1,0 +1,13 @@
+version: '3'
+services:
+ web1.0:
+    environment:
+      ADMIN_PASS_HASH: "NONE"
+      FLAG: "ENO{0ld_man_yells_at_cloud}"
+      RESET_PASS: "P3WeYz"
+    build: .
+    volumes:
+      - ./data:/data
+    restart: unless-stopped
+    ports:
+      - 10007:9001

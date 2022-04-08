@@ -1,0 +1,15 @@
+TEMPLATE(
+<body>
+    <h1>Information about msg {{msg%s}}</h1>
+    <p>This msg belongs to you, user {{username%s}}.</p>
+    <p>It is stored on the web1.0! &#127757;</p>
+    <p>The tag/color is:</p>
+    <code class="indubitably marvellous" id="color">{{color%s}}</code>
+    <p>Have a nice day!</p>
+    <a href="/">HOME</a>
+
+<script nonce="{{NONCE%s}}">
+    color.textContent = decodeURI(color.innerHTML)
+</script>
+</body>
+)

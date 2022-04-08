@@ -1,0 +1,70 @@
+TEMPLATE(
+
+  <body>
+  <h1>Hello {{username%s}}</h1>
+
+  <p>We are proud to release the web1.0, the hypertext protocol we have all waited for</p>
+  <p></p>Under the hood, it leverages a modern server written in the one true language of the web</p>
+  <p>With a msg id, you can store a flag of coice on the web1.0, up to 4 byte!</p>
+
+  <div id="errormsg"></div>
+
+  <div id="userform">
+    <ul> 
+    <li>
+    <label for="username">Username</label>
+    <input type="text" id="username" name="username" />
+    </li>
+    <li>
+    <label for="password">Password</label>
+    <input type="password" id="password" name="password" />
+    </li>
+    <input type="hidden" id="csrf" name="csrf" value="{{csrf%s}}" />
+    </ul>
+    <button id="register">register</button>
+    <button id="login">login</button>
+  </div>
+
+  <code id=pyramid></code>
+
+  <p>Open-Source msgs? Find the source code <a href="/web1.0source.tar.gz">HERE!</a></p>
+
+<script nonce="{{NONCE%s}}">
+
+  // Some lovely codegolf from https://twitter.com/aemkei/status/1275169003028336646?s=20
+  for(o=i=2020;i--;)o+=i%63?i&i/32&&'_':`
+`
+  pyramid.innerHTML = o.replace(/\n/g, "<br>")
+
+  async function send(route) {
+    route = "web1.0?route=" + route
+    console.log("Sending to", route)
+    let response = await fetch(route, {
+      method: 'POST',
+      body: `username=${username.value}&password=${password.value}&admin=&csrf=${csrf.value}
+      `
+    });
+    let resptext = await response.text()
+    console.log(response, resptext);
+    if (resptext && resptext.includes("success")) {
+      location.reload() 
+    } else {
+      errormsg.innerHTML = resptext
+    }
+  }
+
+  login.onclick = () => send("login")
+  register.onclick = () => send("register")
+
+  if ({{logged_in%d}}) {
+    userform.innerHTML = `
+    <p>Welcome back! :)</p>
+    <a href="web1.0/?route=dispense">To The Msg List</a>
+    `;
+  }
+
+</script>
+
+</body>
+
+)

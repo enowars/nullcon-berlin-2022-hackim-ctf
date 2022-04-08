@@ -1,0 +1,9 @@
+data/**/*
+!data/**/.gitkeep 
+
+cgi-bin/poolcide
+
+*.templ
+poolcide
+age
+
