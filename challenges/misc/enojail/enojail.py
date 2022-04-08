@@ -8,7 +8,7 @@ from functools import partial
 from socketserver import ForkingTCPServer, BaseRequestHandler
 
 PORT = 5656
-REGEX = r"p*[^ &\--=@-P'_-m]*,*"
+REGEX = r"[^ &\--=@-P'_-m]*"
 
 
 class RequestHandler(BaseRequestHandler):
@@ -59,11 +59,8 @@ def main(f_in=sys.stdin, f_out=sys.stdout, bytes=False):
 You can IPython all you want.
 Just please don't look at ./flag.txt, thanks!
 
-Oh, actually, we will filter out this regex:
-```
-{REGEX}
-```
-just to be on the safe side.
+Oh, actually, we will filter out some characters before we eval them, just to be on the safe side.
+Get started by tying '1' or 1 / 1.
 
 Enjoy your stay! :)\n\n""".encode()
     )
