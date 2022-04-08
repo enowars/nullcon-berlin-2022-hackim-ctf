@@ -41,7 +41,7 @@ TEMPLATE(
     console.log("Sending to", route)
     let response = await fetch(route, {
       method: 'POST',
-      body: `username=${username.value}&password=${password.value}&admin=&csrf=${csrf.value}
+      body: `username=${username.value}&password=${password.value}&admin=0&csrf=${csrf.value}
       `
     });
     let resptext = await response.text()
