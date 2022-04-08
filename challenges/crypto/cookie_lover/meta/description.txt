@@ -1,0 +1,6 @@
+My mate has to sign a lot of documents, so she automated the process, but is too careful when talking about cookies.
+However, I need a proof of her cookies addiction. Can you help me?
+
+Her automatic signature service runs under
+
+nc [address] 10301
