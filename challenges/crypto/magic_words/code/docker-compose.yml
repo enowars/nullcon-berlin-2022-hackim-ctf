@@ -4,4 +4,4 @@ services:
     restart: unless-stopped
     build: .
     ports: 
-      - "8184:1337" 
+      - "10302:1337" 
