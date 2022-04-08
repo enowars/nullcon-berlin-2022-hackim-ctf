@@ -1,0 +1,7 @@
+version: '3'
+services:
+  enojail:
+    build: .
+    restart: unless-stopped
+    ports:
+      - "14170:5656"
