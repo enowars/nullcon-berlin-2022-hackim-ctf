@@ -10,4 +10,4 @@ services:
       - ./data:/data
     restart: unless-stopped
     ports:
-      - 9001:9001
+      - 10007:9001
