@@ -4,6 +4,6 @@ services:
     build: .
     restart: unless-stopped
     ports:
-      - "8282:31337"
+      - "10001:31337"
     volumes:
       - ./FLAG:/FLAG:ro

@@ -4,7 +4,7 @@ include "config.php";
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>TeXnology</title>
+        <title>TeXnology by @gehaxelt | ctf.nullcon.net</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
         <link rel="stylesheet" href="assets/css/style.css" />
@@ -19,7 +19,7 @@ include "config.php";
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              <a class="navbar-brand" href="">TeXnology by @gehaxelt</a>
+              <a class="navbar-brand" href="">TeXnology by @gehaxelt | ctf.nullcon.net</a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
               <ul class="nav navbar-nav">

@@ -4,7 +4,7 @@ services:
     build: .
     restart: unless-stopped
     ports:
-      - "30025:80"
+      - "10005:80"
     volumes:
       - ./code/:/var/www/html/:ro
       - ./code/FLAG:/FLAG:ro

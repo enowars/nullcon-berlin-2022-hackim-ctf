@@ -3,4 +3,4 @@ services:
   jurl:
     build: .
     ports:
-      - "31337:31337"
+      - "10002:31337"
