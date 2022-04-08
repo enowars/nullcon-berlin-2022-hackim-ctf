@@ -1,5 +1,5 @@
 #!/bin/bash
-
+echo "Welcome to @gehaxelt's gitonator challenge."
 echo "Let's dump a .git/ repository from a web server of your choice. Can I haz URL plz: "
 read -r GITURL
 
