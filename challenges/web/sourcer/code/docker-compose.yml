@@ -1,0 +1,9 @@
+version: '3'
+services:
+  sourcer:
+    build: .
+    restart: unless-stopped
+    ports:
+      - "10006:80"
+    volumes:
+      - ./code/:/var/www/html/:ro
