@@ -1,6 +1,6 @@
 version: "3.9"
 services:
-  chall:
+  magic_dragon:
     volumes:
       - .:/code
     build: .
